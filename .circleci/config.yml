@@ -1,0 +1,23 @@
+version: 2.1
+orbs:
+  node: circleci/node@1.1.6
+jobs:
+  build-and-deploy:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - run: npm install
+      - run: npx wrangler build
+      - run:
+          name: "Setup custom environment variables"
+          command: |
+            echo 'export CLOUDFLARE_AUTH_EMAIL="CLOUDFLARE_AUTH@EMAIL.COM"' >> $BASH_ENV
+            echo 'export CLOUDFLARE_ACCOUNT_ID="CLOUDFLARE_ACCOUNT_ID"' >> $BASH_ENV
+            echo 'export CLOUDFLARE_ZONE_ID="CLOUDFLARE_ZONE_ID"' >> $BASH_ENV
+      - run: npx sls deploy
+workflows:
+    build-and-deploy:
+      jobs:
+        - build-and-deploy:
+            context: cf-worker
