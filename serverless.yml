@@ -13,4 +13,4 @@ plugins:
 functions:
   cf-workers:
     name: cf-workers
-    script: worker/script
+    script: index

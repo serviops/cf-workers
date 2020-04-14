@@ -4,13 +4,11 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Build and Deploy Cloudflare Worker
+    name: Deploy Cloudflare Worker
     steps:
       - uses: actions/checkout@v2.0.0
       - name: install dependencies
         run: 'npm install'
-      - name: build using wrangler
-        run: 'npx wrangler build'
       - name: deploy using sls
         run: 'npx sls deploy'
         env:
