@@ -21,42 +21,42 @@ jobs:
       - uses: actions/checkout@v2.0.0
       - name: install dependencies
         run: 'npm install'
-      - name: deploy using sls
-        run: 'npx sls deploy'
+      - name: deploy using wrangler
+        run: 'npx wrangler publish'
         env:
-          CLOUDFLARE_AUTH_EMAIL: ${{secrets.CLOUDFLARE_AUTH_EMAIL}}
-          CLOUDFLARE_ACCOUNT_ID: ${{secrets.CLOUDFLARE_ACCOUNT_ID}}
-          CLOUDFLARE_ZONE_ID: ${{secrets.CLOUDFLARE_ZONE_ID}}
-          CLOUDFLARE_AUTH_KEY: ${{secrets.CLOUDFLARE_AUTH_KEY}}
+          CF_EMAIL: ${{secrets.CF_EMAIL}}
+          CF_ACCOUNT_ID: ${{secrets.CF_ACCOUNT_ID}}
+          CF_ZONE_ID: ${{secrets.CF_ZONE_ID}}
+          CF_API_KEY: ${{secrets.CF_API_KEY}}
 ```
 
 Where
 * `runs-on: ubuntu-latest` indicates the build environment will be ubuntu
 * `name: Deploy Cloudflare Worker` is the display name of your job
-* `steps` this job will checkout the code, install its dependencies with `npm install` and deploy the Cloudflare Worker using `npx sls deploy`. You can see 4 environments variables: `CLOUDFLARE_AUTH_EMAIL`, `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_ZONE_ID` and `CLOUDFLARE_AUTH_KEY`. Those will be set at a later step.
+* `steps` this job will checkout the code, install its dependencies with `npm install` and deploy the Cloudflare Worker using `npx wrangler publish`. You can see 4 environments variables: `CF_EMAIL`, `CF_ACCOUNT_ID`, `CF_ZONE_ID` and `CF_API_KEY`. Those will be set at a later step.
 
 [A complete example of a `.github/workflows/cloudflare.yml` file can be found here.](../.github/workflows/cloudflare.yml)
 
 ## Create GitHub secrets
-Serverless requires 4 environment variables to deploy a Cloudflare Worker, all of which can be created as GitHub secrets and configured as environment variables inside `.github/workflows/cloudflare.yml`, as we have seen in the previous step.
+Wrangler requires 4 environment variables to deploy a Cloudflare Worker, all of which can be created as GitHub secrets and configured as environment variables inside `.github/workflows/cloudflare.yml`, as we have seen in the previous step.
 
 You must have sufficient access privileges on your GitHub repository to create secrets. You can define a secret from your repository Settings, under the Secrets section.
 
-![Add secrets to your GitHub Repository](githubsecrets.png)
+![Add secrets to your GitHub Repository](githubsecrets_wrangler.png)
 
 Add the following secrets:
-* `CLOUDFLARE_AUTH_EMAIL`: your Cloudflare email
-* `CLOUDFLARE_ACCOUNT_ID`: your Cloudflare account ID
-* `CLOUDFLARE_ZONE_ID`: your Cloudflare Zone ID
-* `CLOUDFLARE_AUTH_KEY`: your Cloudflare Global API Key
+* `CF_EMAIL`: your Cloudflare email
+* `CF_ACCOUNT_ID`: your Cloudflare account ID
+* `CF_ZONE_ID`: your Cloudflare Zone ID
+* `CF_API_KEY`: your Cloudflare Global API Key
 
-Back to `.github/workflows/cloudflare.yml`, we remember settings those 4 environments variables:
+Back to `.github/workflows/cloudflare.yml`, we remember setting those 4 environments variables:
 ```yaml
 env:
-  CLOUDFLARE_AUTH_EMAIL: ${{secrets.CLOUDFLARE_AUTH_EMAIL}}
-  CLOUDFLARE_ACCOUNT_ID: ${{secrets.CLOUDFLARE_ACCOUNT_ID}}
-  CLOUDFLARE_ZONE_ID: ${{secrets.CLOUDFLARE_ZONE_ID}}
-  CLOUDFLARE_AUTH_KEY: ${{secrets.CLOUDFLARE_AUTH_KEY}}
+  CF_EMAIL: ${{secrets.CF_EMAIL}}
+  CF_ACCOUNT_ID: ${{secrets.CF_ACCOUNT_ID}}
+  CF_ZONE_ID: ${{secrets.CF_ZONE_ID}}
+  CF_API_KEY: ${{secrets.CF_API_KEY}}
 ```
 
 Where `${{secrets....}}` indicates GitHub Actions to fetch the value from the secrets.
@@ -69,4 +69,4 @@ git push origin master
 ```
 
 Check your results in GitHub Actions:
-![GitHub Actions results](githubactionsresults.png)
+![GitHub Actions results](githubactionsresults_wrangler.png)

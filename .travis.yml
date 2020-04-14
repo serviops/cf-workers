@@ -4,7 +4,7 @@ node_js:
 
 deploy:
   - provider: script
-    script: npx sls deploy
+    script: npx wrangler publish
     skip_cleanup: true
     on:
       all_branches: true

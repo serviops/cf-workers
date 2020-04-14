@@ -9,10 +9,10 @@ jobs:
       - uses: actions/checkout@v2.0.0
       - name: install dependencies
         run: 'npm install'
-      - name: deploy using sls
-        run: 'npx sls deploy'
+      - name: deploy using wrangler
+        run: 'npx wrangler publish'
         env:
-          CLOUDFLARE_AUTH_EMAIL: ${{secrets.CLOUDFLARE_AUTH_EMAIL}}
-          CLOUDFLARE_ACCOUNT_ID: ${{secrets.CLOUDFLARE_ACCOUNT_ID}}
-          CLOUDFLARE_ZONE_ID: ${{secrets.CLOUDFLARE_ZONE_ID}}
-          CLOUDFLARE_AUTH_KEY: ${{secrets.CLOUDFLARE_AUTH_KEY}}
+          CF_EMAIL: ${{secrets.CF_EMAIL}}
+          CF_ACCOUNT_ID: ${{secrets.CF_ACCOUNT_ID}}
+          CF_ZONE_ID: ${{secrets.CF_ZONE_ID}}
+          CF_API_KEY: ${{secrets.CF_API_KEY}}

@@ -3,5 +3,5 @@ addEventListener('fetch', event => {
 });
 
 async function handleEvent(event) {
-  return new Response('Hello, Cloudflare Worker!', { status: 200 })
+  return new Response('Hello, Cloudflare Worker!!', { status: 200 })
 }

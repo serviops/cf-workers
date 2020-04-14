@@ -13,7 +13,6 @@
     "prettier": "^1.19.1"
   },
   "dependencies": {
-    "serverless": "^1.67.3",
-    "serverless-cloudflare-workers": "^1.2.0"
+    "@cloudflare/wrangler": "^1.8.4"
   }
 }

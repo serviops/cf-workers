@@ -1,0 +1,4 @@
+name = "cf-workers"
+type = "javascript"
+workers_dev = false
+route = "www.manok.io/cf-workers"
