@@ -1,4 +1,4 @@
 name = "cf-workers"
-type = "webpack"
-account_id = "CLOUDFLARE_ACCOUNT_ID"
-workers_dev = true
+type = "javascript"
+workers_dev = false
+route = "www.manok.io/cf-workers"
