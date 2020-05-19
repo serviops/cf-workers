@@ -1,4 +1,0 @@
-name = "cf-workers"
-type = "webpack"
-account_id = "CLOUDFLARE_ACCOUNT_ID"
-workers_dev = true

@@ -6,14 +6,14 @@
   "scripts": {
     "format": "prettier --write --no-semi --single-quote --print-width 100 --trailing-comma es5 '**/*.{js,css,json,md}'"
   },
-  "author": "Stephanie",
+  "author": "Stephanie Guilbert",
+  "repository": "https://github.com/serviops/cf-workers",
   "license": "MIT",
   "devDependencies": {
     "prettier": "^1.19.1"
   },
   "dependencies": {
-    "@cloudflare/wrangler": "^1.8.1",
-    "serverless": "^1.66.0",
+    "serverless": "^1.67.3",
     "serverless-cloudflare-workers": "^1.2.0"
   }
 }
