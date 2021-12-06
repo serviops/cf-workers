@@ -16,5 +16,5 @@ functions:
     script: index
     events:
       - http:
-          url: www.domain.com/cf-worker
+          url: www.serviops.org/cf-worker
           method: GET
