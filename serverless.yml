@@ -13,4 +13,8 @@ plugins:
 functions:
   cf-workers:
     name: cf-workers
-    script: worker/script
+    script: index
+    events:
+      - http:
+          url: www.domain.com/cf-worker
+          method: GET
